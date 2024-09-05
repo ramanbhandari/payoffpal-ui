@@ -1,14 +1,18 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { View, StyleSheet, Alert, TouchableOpacity, Text } from "react-native";
-import Register from "../components/register/";
-import { useNavigation } from '@react-navigation/native';
-import ColorTheme from "../constants/color";
+import Register from "../../components/register";
+import { useNavigation } from "@react-navigation/native";
+import ColorTheme from "../../constants/color";
+import { registerRequest } from "./actions";
 
 export default function RegisterScreen() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-  const navigation = useNavigation();
+	const navigation = useNavigation();
+
+	const dispatch = useDispatch();
+	const { user, loading, error } = useSelector((state) => state.register);
 
 	const validateEmail = (email) => {
 		const emailRegex = /\S+@\S+\.\S+/;
@@ -25,10 +29,22 @@ export default function RegisterScreen() {
 			Alert.alert("Password must be at least 8 characters long.");
 			return;
 		}
-
-		Alert.alert("Registration Successful");
-    navigation.navigate('LoginScreen');
+		let name = email.split('@')[0];
+		dispatch(registerRequest({name, email, password}))
 	};
+
+	useEffect(() => {
+		if (user) {
+			Alert.alert("Registration Successful");
+            navigation.navigate('ProfileScreen');
+        }
+	},[user, navigation]);
+
+	useEffect(() => {
+        if (error) {
+            Alert.alert('Registration Failed', error);
+        }
+    }, [error]);
 
 	return (
 		<View style={styles.container}>
@@ -57,15 +73,15 @@ const styles = StyleSheet.create({
 		backgroundColor: ColorTheme.dark.primary,
 		padding: 20,
 	},
-  signupTextContainer: {
-		flexDirection: 'row',
+	signupTextContainer: {
+		flexDirection: "row",
 		marginTop: 20,
 	},
 	noAccountText: {
-		color: ColorTheme.dark.textSecondary
+		color: ColorTheme.dark.textSecondary,
 	},
-    linkText: {
+	linkText: {
 		color: ColorTheme.dark.primaryAccent,
-		textDecorationLine: 'underline',
+		textDecorationLine: "underline",
 	},
 });

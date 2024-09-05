@@ -29,7 +29,7 @@ export default function Register({email, setEmail, password, setPassword, onSubm
                 mode="contained"
 				onPress={onSubmit}
 				style={styles.button}>
-                    Login
+                    Register
 			</Button>
 		</View>
 	);
