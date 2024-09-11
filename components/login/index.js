@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import styles from "./styles";
 import { Button, TextInput } from "react-native-paper";
 import ColorTheme from "../../constants/color";
+import { LoginHeader } from "../loginHeader";
 
 export default function Login({
 	email,
@@ -11,7 +12,8 @@ export default function Login({
 	onSubmit,
 }) {
 	return (
-		<View style={styles.container}>
+		<View>
+			{LoginHeader}
 			<View style={styles.titleContainer}>
 				<Text style={styles.title}>Log in</Text>
 			</View>
@@ -29,9 +31,8 @@ export default function Login({
 				value={password}
 				onChangeText={setPassword}
 			/>
-
 			<Button mode="contained" onPress={onSubmit} style={styles.button}>
-				Login
+				<Text style={styles.buttonText}> Login </Text>
 			</Button>
 		</View>
 	);

@@ -1,10 +1,10 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import RegisterScreen from "../screens/register/index";
+import RegisterScreen from "../screens/register";
 import HomeScreen from "../screens/home";
 import ProfileScreen from "../screens/profile/profile";
-import LoginScreen from "../screens/login/index";
+import LoginScreen from "../screens/login";
 import { SafeAreaView } from "react-native";
 import * as Font from "expo-font";
 import ColorTheme from "../constants/color";
@@ -38,13 +38,14 @@ export default function AppNavigator() {
 	}
 
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: ColorTheme.dark.primary }}>
+		<SafeAreaView
+			style={{ flex: 1, backgroundColor: ColorTheme.dark.textPrimary }}>
 			<NavigationContainer>
 				<Stack.Navigator screenOptions={{ headerShown: false }}>
-					<Stack.Screen name="LoginScreen" component={LoginScreen} />
-					<Stack.Screen name="HomeScreen" component={HomeScreen} />
-					<Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-					<Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+					<Stack.Screen name="Login" component={LoginScreen} />
+					<Stack.Screen name="Register" component={RegisterScreen} />
+					<Stack.Screen name="Home" component={HomeScreen} />
+					<Stack.Screen name="Profile" component={ProfileScreen} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</SafeAreaView>

@@ -5,6 +5,7 @@ import Login from "../../components/login";
 import { useNavigation } from "@react-navigation/native";
 import ColorTheme from "../../constants/color";
 import { loginRequest } from "./actions";
+import { LoginHeader } from "../../components/loginHeader";
 
 export default function LoginScreen() {
 	const [email, setEmail] = useState("");
@@ -35,15 +36,15 @@ export default function LoginScreen() {
 	useEffect(() => {
 		if (user) {
 			Alert.alert("Login Successful");
-            navigation.navigate('ProfileScreen');
-        }
-	},[user, navigation]);
+			navigation.navigate("Profile");
+		}
+	}, [user, navigation]);
 
 	useEffect(() => {
-        if (error) {
-            Alert.alert('Login Failed', error);
-        }
-    }, [error]);
+		if (error) {
+			Alert.alert("Login Failed", error);
+		}
+	}, [error]);
 
 	return (
 		<View style={styles.container}>
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: ColorTheme.dark.primary,
+		backgroundColor: ColorTheme.dark.textPrimary,
 		padding: 20,
 	},
 	signupTextContainer: {
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 	},
 	noAccountText: {
-		color: ColorTheme.dark.textSecondary,
+		color: ColorTheme.dark.secondary,
 	},
 	linkText: {
 		color: ColorTheme.dark.primaryAccent,

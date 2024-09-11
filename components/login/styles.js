@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import ColorTheme from "../../constants/color"
+import ColorTheme from "../../constants/color";
 const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
@@ -7,16 +7,16 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-    },
-    titleContainer: {
-        width: width * 0.9,
-    },  
+	},
+	titleContainer: {
+		width: width * 0.9,
+	},
 	title: {
-        fontFamily: 'Roboto-Bold',
+		fontFamily: "Roboto-Bold",
 		fontSize: 24,
 		marginBottom: 20,
-        textAlign: 'left',
-        color: ColorTheme.dark.textPrimary
+		textAlign: "left",
+		color: ColorTheme.dark.secondary,
 	},
 	input: {
 		width: width * 0.9, // Adjust width to be responsive
@@ -24,8 +24,11 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		marginTop: 20,
-        width: width * 0.9,
-        backgroundColor: ColorTheme.dark.primaryAccent,
+		width: width * 0.9,
+		backgroundColor: ColorTheme.dark.primaryAccent,
+	},
+	buttonText: {
+		color: ColorTheme.dark.secondary,
 	},
 });
 
